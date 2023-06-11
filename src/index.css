@@ -1,0 +1,15 @@
+@import url('http://fonts.google.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #3f3f3f;
+}
