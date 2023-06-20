@@ -1,59 +1,43 @@
 import React, { useState } from "react";
 import "./NewExpenseForm.css";
 
-function NewExpenseForm() {
+function NewExpenseForm(props) {
   const [titleEntered, setEnteredTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
-
-  //   const [userInput, setUserInput] = useState({
-  //     titleEntered: "",
-  //     amount: "",
-  //     date: "",
-  //   });
+  const [amountEntered, setAmount] = useState("");
+  const [dateEntered, setDate] = useState("");
 
   const onTitleChange = (event) => {
     setEnteredTitle(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   titleEntered: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return { ...prevState, titleEntered: event.target.value };
-    // });
-    console.log(titleEntered);
   };
 
   const onAmountChange = (event) => {
     setAmount(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   amount: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return { ...prevState, amount: event.target.value };
-    // });
-    console.log(amount);
   };
 
   const onDateChange = (event) => {
     setDate(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   date: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return { ...prevState, date: event.target.value };
-    // });
-    console.log(date);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const expenseData = {
+      title: titleEntered,
+      amount: amountEntered,
+      date: new Date(dateEntered),
+    };
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle("");
+    setAmount("");
+    setDate("");
   };
 
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={onTitleChange} />
+          <input type="text" value={titleEntered} onChange={onTitleChange} />
         </div>
 
         <div className="new-expense__control">
@@ -63,6 +47,7 @@ function NewExpenseForm() {
             min="0.01"
             step="0.01"
             onChange={onAmountChange}
+            value={amountEntered}
           />
         </div>
 
@@ -73,6 +58,7 @@ function NewExpenseForm() {
             min="2019-01-01"
             max="2025-12-31"
             onChange={onDateChange}
+            value={dateEntered}
           />
         </div>
       </div>
