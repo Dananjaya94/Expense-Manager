@@ -9,10 +9,6 @@ function ExpenseItem(data) {
   const expenseAmount = data.amount;
   const expenseDate = data.date;
 
-  const onClickChangeTitle = () => {
-    setTitleState("Updated!");
-  };
-
   return (
     <Card className="expense-item">
       <ExpenseDate date={expenseDate} />
@@ -20,7 +16,6 @@ function ExpenseItem(data) {
         <h2>{titleState}</h2>
         <div className="expense-item__price">${expenseAmount}</div>
       </div>
-      <button onClick={onClickChangeTitle}>Change Title</button>
     </Card>
   );
 }
