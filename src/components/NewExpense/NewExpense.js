@@ -23,14 +23,15 @@ function NewExpense(props) {
 
   return (
     <div className="new-expense">
-      <button className="new-expense button" onClick={onAddNewExpenseClick}>
-        Add New Expense
-      </button>
-      {newExpenseButtonState === true && (
+      {newExpenseButtonState === true ? (
         <NewExpenseForm
           onSaveExpenseData={onSaveExpenseDataHandler}
           onCancel={onCancelPress}
         />
+      ) : (
+        <button className="new-expense button" onClick={onAddNewExpenseClick}>
+          Add New Expense
+        </button>
       )}
     </div>
   );
